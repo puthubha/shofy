@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.backend.backend.dto.LoginRequest;
 import com.backend.backend.entity.SignUpUserData;
 import com.backend.backend.services.SignUpService;
 
@@ -26,6 +27,11 @@ public class SignUpController {
         userData.setRole("user");
         
         return signUpService.saveUserData(userData);
+    }
+
+    @PostMapping("/login")
+    public Map<String,Object> loginData(@RequestBody LoginRequest loginData) {
+        return signUpService.getLoginData(loginData);
     }
 
 }

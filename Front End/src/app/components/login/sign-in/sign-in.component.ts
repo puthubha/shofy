@@ -36,25 +36,48 @@ export class SignInComponent implements OnInit {
 
   onSubmit() {
     if (this.signinForm.valid) {
-        const filteredData = this.apiGetData.filter(
-        (data) =>
-          data.email == this.signinForm.value.email &&
-          data.role == this.signinForm.value.role &&
-          data.password == this.signinForm.value.password
-      );
+      this.LoginServiceService.postLoginData(this.signinForm.value).subscribe(
+        (result:any) => {
+          if(result){
+            if(result.status && result.data){
+              this.SweetAlert.success(result.message);
+              localStorage.setItem('ShofyloginData', JSON.stringify(result.data));
+              localStorage.setItem('Token', JSON.stringify(12345));
 
-      if (filteredData.length >= 1) {
-        this.SweetAlert.success('Signed in Successfully');
-        localStorage.setItem('ShofyloginData', JSON.stringify(filteredData));
-        localStorage.setItem('Token', JSON.stringify(12345));
-        if (this.signinForm.value.role === 'user') {
-          this.Router.navigateByUrl('/home');
-        } else {
-          this.Router.navigateByUrl('/admin-panel');
+              if (result.data.role === 'user') {
+                this.Router.navigateByUrl('/home');
+              } else {
+                this.Router.navigateByUrl('/admin-panel');
+              }
+
+              // this.Router.navigateByUrl('/signin');
+            }else{
+              this.SweetAlert.error(result.message);      
+            }
         }
-      } else {
-        this.SweetAlert.error('Please Check Email Or Password');
       }
+      ) ;
+
+
+      //   const filteredData = this.apiGetData.filter(
+      //   (data) =>
+      //     data.email == this.signinForm.value.email &&
+      //     data.role == this.signinForm.value.role &&
+      //     data.password == this.signinForm.value.password
+      // );
+
+      // if (filteredData.length >= 1) {
+      //   this.SweetAlert.success('Signed in Successfully');
+      //   localStorage.setItem('ShofyloginData', JSON.stringify(filteredData));
+      //   localStorage.setItem('Token', JSON.stringify(12345));
+      //   if (this.signinForm.value.role === 'user') {
+      //     this.Router.navigateByUrl('/home');
+      //   } else {
+      //     this.Router.navigateByUrl('/admin-panel');
+      //   }
+      // } else {
+      //   this.SweetAlert.error('Please Check Email Or Password');
+      // }
     } else {
       this.SweetAlert.error('Please Fillup Information');
     }

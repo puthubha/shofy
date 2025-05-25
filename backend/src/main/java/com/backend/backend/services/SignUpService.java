@@ -2,11 +2,15 @@ package com.backend.backend.services;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import com.backend.backend.dto.LoginRequest;
+import com.backend.backend.dto.LoginResponse;
 import com.backend.backend.entity.SignUpUserData;
-import com.backend.backend.exceptionHandler.EmailAlreadyExistsException;
 import com.backend.backend.interfaces.SignUpInterface;
 
 @Service
@@ -15,19 +19,15 @@ public class SignUpService {
     @Autowired
     private SignUpInterface signUpInterface;
 
-    // public SignUpUserData saveUserData(SignUpUserData userData) {
-    //     System.out.println(userData.toString());
-    //     if(signUpInterface.existsByEmailId(userData.getEmailId())){
-    //         throw new EmailAlreadyExistsException("Email already exists");
-    //     }
-    //     return signUpInterface.save(userData);
-
-    // }
+    @Autowired
+    private BCryptPasswordEncoder passwordEncoder;
 
     public Map<String, Object> saveUserData(SignUpUserData userData) {
         Map<String, Object> response = new HashMap<>();
 
-        if (signUpInterface.existsByEmailId(userData.getEmailId())) {
+        Optional<SignUpUserData> existingUser = signUpInterface.findByEmailId(userData.getEmailId());
+
+        if (existingUser.isPresent()) {
             response.put("status", false);
             response.put("message", "Email already exists");
             return response;
@@ -38,5 +38,30 @@ public class SignUpService {
         response.put("message", "User registered successfully");
         response.put("data", savedUser);
         return response;
+    }
+
+    public Map<String, Object> getLoginData(LoginRequest loginData) {
+        Map<String, Object> responce = new HashMap<>();
+
+        Optional<SignUpUserData> existingUser = signUpInterface.findByEmailId(loginData.getEmailId());
+
+        if (existingUser.isEmpty()) {
+            responce.put("status", false);
+            responce.put("message", "Email address not registered. Please sign up first.");
+            return responce;
+        }
+        SignUpUserData user = existingUser.get();
+
+        if (!passwordEncoder.matches(loginData.getPassword(), user.getPassword())) {
+            responce.put("status", false);
+            responce.put("message", "Invalid password.");
+            return responce;
+        }
+
+        LoginResponse data = new LoginResponse(user);
+        responce.put("status", true);
+        responce.put("message", "User logged in successfully");
+        responce.put("data", data);
+        return responce;
     }
 }
