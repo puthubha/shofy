@@ -1,0 +1,39 @@
+<div class="profile__tab-content">
+    <div class="tab-content" id="profile-tabContent">
+        <div class="profile__info">
+            <h3 class="profile__info-title">Add Product Categorie</h3>
+            <div class="profile__info-content">
+           
+            <form [formGroup]="AddProductForm">       
+
+                    <div class="row">
+                        <div class="col-xxl-6 col-md-6">
+                            <div class="profile__input-box">
+                                <div class="profile__input">
+                                    <input type="text" placeholder="Enter Product Categorie Name" value="" formControlName="productCategorieName"/>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xxl-6 col-md-6">
+                            <div class="profile__input-box">
+                                <div class="profile__input">
+                                    <input type="file" placeholder="uplode your Product Image" (change)="fileChangeEvent($event)" value="" formControlName="productImage"/>
+                                    
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-xxl-12">
+                            <div class="profile__btn">
+                                <button type="submit" class="tp-btn" (click)="addProduct()">Add Product</button>
+                            </div>
+                        </div>
+                    </div>
+
+                </form>
+            
+            </div>
+        </div>
+    </div>
+</div>

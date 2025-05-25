@@ -1,0 +1,26 @@
+<div class="profile__tab-content">
+    <div class="tab-content" id="profile-tabContent">
+
+        <div class="profile__ticket table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col">Email Id</th>
+                        <th scope="col">Subject</th>
+                        <th scope="col">Message</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let user of contactApiData" >
+                        <td scope="row">{{user.name}}</td>
+                        <td data-info="title">{{user.email}}</td>
+                        <td data-info="status pending">{{user.subject}}</td>
+                        <td>{{user.message}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</div>

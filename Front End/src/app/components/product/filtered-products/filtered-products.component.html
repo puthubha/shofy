@@ -1,0 +1,121 @@
+
+<main>
+  <!-- breadcrumb area start -->
+  <section class="breadcrumb__area include-bg pt-100 pb-50 breadcrumb__padding">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-xxl-12">
+          <div class="breadcrumb__content p-relative z-index-1">
+            <h3 class="breadcrumb__title">{{categorie}}</h3>
+            <div class="breadcrumb__list">
+              <span><a routerLink="/home">Home</a></span>
+              <span>{{categorie}}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- breadcrumb area end -->
+
+  <!-- shop area start -->
+  <section class="tp-shop-area pb-120 tp-shop-full-width-padding">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-xl-12">
+          <div class="tp-shop-main-wrapper">
+            <div class="tp-shop-top mb-45">
+              <div class="row">
+                <div class="col-xl-6 col-lg-6 col-md-6">
+                  <div class="tp-shop-top-left d-flex align-items-center">
+                    <div class="tp-shop-top-tab tp-tab"></div>
+                  </div>
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-6">
+                  <div
+                    class="tp-shop-top-right tp-shop-top-right-2 d-sm-flex align-items-center justify-content-md-end"
+                  >
+                    <div class="tp-shop-top-select"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="tp-shop-items-wrapper tp-shop-item-primary">
+              <div class="tab-content" id="productTabContent">
+                <div
+                  class="tab-pane fade show active"
+                  id="grid-tab-pane"
+                  role="tabpanel"
+                  aria-labelledby="grid-tab"
+                  tabindex="0"
+                >
+                  <div
+                    class="row row-cols-xxl-5 row-cols-xl-4 row-cols-lg-3 row-cols-md-2 row-cols-sm-2 row-cols-1"
+                  >
+                    <div class="col" *ngFor="let item of filteredData | paginate:{ itemsPerPage: count, currentPage: p }">
+                      <div class="tp-product-item-2 mb-40">
+                        <div
+                          class="tp-product-thumb-2 p-relative z-index-1 fix w-img"
+                        >
+                          <a [routerLink]="['/product-detail', item._id]">
+                            <img style="height:300px; width:250px"
+                              [src]="item.productImage"
+                              alt=""
+                            />
+                          </a>
+                          
+                        </div>
+                        <div class="tp-product-content-2 pt-15">
+                          <div class="tp-product-tag-2">
+                            <a [routerLink]="['/product-detail', item._id]">{{item.productCategorie}}</a>
+                          </div>
+                          <h3 class="tp-product-title-2">
+                            <a [routerLink]="['/product-detail', item._id]"
+                              >{{item.productName}}</a
+                            >
+                          </h3>
+                          <div
+                            class="tp-product-rating-icon tp-product-rating-icon-2"
+                          >
+                            <span><i class="fa-solid fa-star"></i></span>
+                            <span><i class="fa-solid fa-star"></i></span>
+                            <span><i class="fa-solid fa-star"></i></span>
+                            <span><i class="fa-solid fa-star"></i></span>
+                            <span><i class="fa-solid fa-star"></i></span>
+                          </div>
+                          <div class="tp-product-price-wrapper-2">
+                            <span class="tp-product-price-2 new-price"
+                              >₹{{item.productDiscountPrice}}</span
+                            >
+                            <span class="tp-product-price-2 old-price"
+                              >₹{{item.productPrice}}</span
+                            >
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div class="text-right">
+                    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                  </div>
+                </div>
+                
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- shop area end -->
+
+  <div
+    class="modal fade tp-product-modal"
+    id="producQuickViewModal"
+    tabindex="-1"
+    aria-labelledby="producQuickViewModal"
+    aria-hidden="true"
+  >
+  </div>
+</main>
