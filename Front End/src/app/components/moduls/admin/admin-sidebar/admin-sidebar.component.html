@@ -1,41 +1,129 @@
-
 <main>
-
-    <!-- profile area start -->
-    <section class="profile__area pt-120 pb-120">
-     <div class="container">
-        <div class="profile__inner p-relative">
-           <div class="profile__shape">
-              <img class="profile__shape-1" src="assets/img/login/laptop.png" alt="" >
-              <img class="profile__shape-2" src="assets/img/login/man.png" alt="" >
-              <img class="profile__shape-3" src="assets/img/login/shape-1.png" alt="" >
-              <img class="profile__shape-4" src="assets/img/login/shape-2.png" alt="" >
-              <img class="profile__shape-5" src="assets/img/login/shape-3.png" alt="" >
-              <img class="profile__shape-6" src="assets/img/login/shape-4.png" alt="" >
-           </div>
-           <div class="row">
-              <div class="col-xxl-4 col-lg-4">
-                 <div class="profile__tab mr-40">
-                    <nav>
-                       <div class="nav nav-tabs tp-tab-menu flex-column" id="profile-tab" role="tablist">
-                          <button routerLink="/admin-panel/profile" class="nav-link active" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false"><span><i class="fa-regular fa-user-pen"></i></span><a >Profile</a></button>
-                          <button routerLink="./user-list" class="nav-link" id="nav-address-tab" data-bs-toggle="tab" data-bs-target="#nav-address" type="button" role="tab" aria-controls="nav-address" aria-selected="false"><span><i class="fa-light fa-location-dot"></i></span> <a >User List </a></button>
-                          <button routerLink="./add-product"  class="nav-link" id="nav-order-tab" data-bs-toggle="tab" data-bs-target="#nav-order" type="button" role="tab" aria-controls="nav-order" aria-selected="false"><span><i class="fa-light fa-clipboard-list-check"></i></span><a>Add Product</a></button>
-                          <button routerLink="./add-product-categorie"  class="nav-link" id="nav-order-tab" data-bs-toggle="tab" data-bs-target="#nav-order" type="button" role="tab" aria-controls="nav-order" aria-selected="false"><span><i class="fa-light fa-clipboard-list-check"></i></span><a>Add Product Categorie</a></button>
-                          <button routerLink="./view-faq" class="nav-link" id="nav-notification-tab" data-bs-toggle="tab" data-bs-target="#nav-notification" type="button" role="tab" aria-controls="nav-notification" aria-selected="false"><span><i class="fa-regular fa-bell"></i></span><a >View FAQ</a></button>
-                          <span id="marker-vertical" class="tp-tab-line d-none d-sm-inline-block"></span>
-                       </div>
-                    </nav>
-                 </div>
-              </div>
-              <div class="col-xxl-8 col-lg-8">
-                <router-outlet></router-outlet>    
-                    </div>
-                 </div>
-              </div>
-           </div>
-      
- </section>
- <!-- profile area end -->
-
-  </main>
+  <!-- profile area start -->
+  <section class="profile__area pt-120 pb-120">
+    <div class="container">
+      <div class="profile__inner p-relative">
+        <div class="profile__shape">
+          <img
+            class="profile__shape-1"
+            src="assets/img/login/laptop.png"
+            alt=""
+          />
+          <img class="profile__shape-2" src="assets/img/login/man.png" alt="" />
+          <img
+            class="profile__shape-3"
+            src="assets/img/login/shape-1.png"
+            alt=""
+          />
+          <img
+            class="profile__shape-4"
+            src="assets/img/login/shape-2.png"
+            alt=""
+          />
+          <img
+            class="profile__shape-5"
+            src="assets/img/login/shape-3.png"
+            alt=""
+          />
+          <img
+            class="profile__shape-6"
+            src="assets/img/login/shape-4.png"
+            alt=""
+          />
+        </div>
+        <div class="row">
+          <div class="col-xxl-4 col-lg-4">
+            <div class="profile__tab mr-40">
+              <nav>
+                <div
+                  class="nav nav-tabs tp-tab-menu flex-column"
+                  id="profile-tab"
+                  role="tablist"
+                >
+                  <button
+                    routerLink="/admin-panel/profile"
+                    class="nav-link active"
+                    id="nav-profile-tab"
+                    data-bs-toggle="tab"
+                    data-bs-target="#nav-profile"
+                    type="button"
+                    role="tab"
+                    aria-controls="nav-profile"
+                    aria-selected="false"
+                  >
+                    <span><i class="fa-regular fa-user-pen"></i></span
+                    ><a>Profile</a>
+                  </button>
+                  <button
+                    routerLink="./user-list"
+                    class="nav-link"
+                    id="nav-address-tab"
+                    data-bs-toggle="tab"
+                    data-bs-target="#nav-address"
+                    type="button"
+                    role="tab"
+                    aria-controls="nav-address"
+                    aria-selected="false"
+                  >
+                    <span><i class="fa-light fa-location-dot"></i></span>
+                    <a>User List </a>
+                  </button>
+                  <button
+                    routerLink="./add-product"
+                    class="nav-link"
+                    id="nav-order-tab"
+                    data-bs-toggle="tab"
+                    data-bs-target="#nav-order"
+                    type="button"
+                    role="tab"
+                    aria-controls="nav-order"
+                    aria-selected="false"
+                  >
+                    <span><i class="fa-light fa-clipboard-list-check"></i></span
+                    ><a>Add Product</a>
+                  </button>
+                  <button
+                    routerLink="./add-product-categorie"
+                    class="nav-link"
+                    id="nav-order-tab"
+                    data-bs-toggle="tab"
+                    data-bs-target="#nav-order"
+                    type="button"
+                    role="tab"
+                    aria-controls="nav-order"
+                    aria-selected="false"
+                  >
+                    <span><i class="fa-light fa-clipboard-list-check"></i></span
+                    ><a>Add Product Categorie</a>
+                  </button>
+                  <button
+                    routerLink="./view-faq"
+                    class="nav-link"
+                    id="nav-notification-tab"
+                    data-bs-toggle="tab"
+                    data-bs-target="#nav-notification"
+                    type="button"
+                    role="tab"
+                    aria-controls="nav-notification"
+                    aria-selected="false"
+                  >
+                    <span><i class="fa-regular fa-bell"></i></span
+                    ><a>View FAQ</a>
+                  </button>
+                  <span
+                    id="marker-vertical"
+                    class="tp-tab-line d-none d-sm-inline-block"
+                  ></span>
+                </div>
+              </nav>
+            </div>
+          </div>
+          <div class="col-xxl-8 col-lg-8">
+            <router-outlet></router-outlet>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- profile area end -->
+</main>

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { SignUpApidata } from 'src/app/components/interface';
 import { SweetAlertService } from 'src/app/components/services/sweet-alert.service';
-import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-profile',
@@ -9,16 +8,15 @@ import Swal from 'sweetalert2';
   styleUrls: ['./profile.component.css'],
 })
 export class ProfileComponent implements OnInit {
-  name: string = '';
-  constructor(private Router: Router,private SweetAlert:SweetAlertService) {}
+  localStorageData: SignUpApidata;
+  constructor(private SweetAlert: SweetAlertService) {}
 
   ngOnInit(): void {
     const localData = localStorage.getItem('ShofyloginData');
-    const data = JSON.parse(localData);
-    this.name = data[0].name;
+    this.localStorageData = JSON.parse(localData);
   }
 
   onLogOut() {
-   this.SweetAlert.logOut();
+    this.SweetAlert.logOut();
   }
 }

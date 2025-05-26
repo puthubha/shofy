@@ -49,4 +49,8 @@ export class LoginServiceService {
     };
     return this.http.post(`${this.api}/signup`, body);
   }
+
+  getAllUserData(){
+    return this.http.get(`${this.api}/getAllUsers`)
+  }
 }

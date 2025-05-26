@@ -30,7 +30,7 @@ export class AuthUserGuard implements CanActivate {
 
     if (data != null) {
       this.loggedInData = JSON.parse(data);
-      if (this.loggedInData[0].role == 'user') {
+      if (this.loggedInData.role == 'user') {
         this.activate = true;
       } else {
         this.SweetAlert.error('You Have Not Access of User Panel');

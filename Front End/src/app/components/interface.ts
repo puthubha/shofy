@@ -12,9 +12,8 @@ export interface SignUpApidata{
     email:string,
     password:string,
     checkbox:Boolean,
-    role:string
+    role:string,
     id:number
-   
 }
 
 export interface LoginData{
@@ -30,7 +29,6 @@ export interface ProductData{
     productDiscountPrice: number,
     productImage: number,
     _id: number
-
 }
 export interface contactApiData{
     id:Number,
@@ -44,4 +42,11 @@ export interface productCategorie{
     id:number,
     productCategorieName:string,
     productImage:string
+}
+
+export interface userListData{
+    userId:Number,
+    name:string,
+    email:string,
+    role:string,
 }

@@ -1,8 +1,11 @@
 package com.backend.backend.services;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -10,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import com.backend.backend.dto.LoginRequest;
 import com.backend.backend.dto.LoginResponse;
+import com.backend.backend.dto.UserDataResponse;
 import com.backend.backend.entity.SignUpUserData;
 import com.backend.backend.interfaces.SignUpInterface;
 
@@ -62,6 +66,25 @@ public class SignUpService {
         responce.put("status", true);
         responce.put("message", "User logged in successfully");
         responce.put("data", data);
+        return responce;
+    }
+
+    public Map<String, Object> getAllUsersData() {
+        Map<String, Object> responce = new HashMap<>();
+
+        List<SignUpUserData> userData = signUpInterface.findAll();
+        if (userData.isEmpty()) {
+            responce.put("status", false);
+            responce.put("message", "we don't have any users");
+            return responce;
+        }
+
+        List<UserDataResponse> responceUserData = userData.stream()
+                .map(user -> new UserDataResponse(user.getId(), user.getName(), user.getEmailId(), user.getRole()))
+                .collect(Collectors.toList());
+        responce.put("status", true);
+        responce.put("message", "All users data fetched successfully");
+        responce.put("data", responceUserData);
         return responce;
     }
 }

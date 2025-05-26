@@ -30,7 +30,7 @@ export class AuthAdminGuard implements CanActivate {
 
     if (data != null) {
       this.loggedInData = JSON.parse(data);
-      if (this.loggedInData[0].role == 'admin') {
+      if (this.loggedInData.role == 'admin') {
         this.activate = true;
       } else {
         this.SweetAlert.error('You Have Not Access of Admin Panel');

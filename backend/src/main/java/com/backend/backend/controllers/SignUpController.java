@@ -4,6 +4,7 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -32,6 +33,11 @@ public class SignUpController {
     @PostMapping("/login")
     public Map<String,Object> loginData(@RequestBody LoginRequest loginData) {
         return signUpService.getLoginData(loginData);
+    }
+
+    @GetMapping("/getAllUsers")
+    public Map<String,Object> allUsersData(){
+        return signUpService.getAllUsersData();
     }
 
 }

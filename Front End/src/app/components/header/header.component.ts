@@ -9,7 +9,7 @@ import { SweetAlertService } from '../services/sweet-alert.service';
   styleUrls: ['./header.component.css'],
 })
 export class HeaderComponent implements OnInit {
-  localStorageData: SignUpApidata[] = [];
+  localStorageData:SignUpApidata;
   constructor(private Router: Router, private SweetAlert: SweetAlertService) {}
 
   ngOnInit(): void {}
@@ -37,12 +37,10 @@ export class HeaderComponent implements OnInit {
     const data = localStorage.getItem('ShofyloginData');
     if (data) {
       this.localStorageData = JSON.parse(data);
-    } else {
-      this.localStorageData = [];
     }
 
-    if (this.localStorageData.length >= 1) {
-      if (this.localStorageData[0].role === 'admin') {
+    if (this.localStorageData && this.localStorageData.role) {
+      if (this.localStorageData.role === 'admin') {
         this.Router.navigateByUrl('/admin-panel');
       } else {
         this.Router.navigateByUrl('/user-panel');
