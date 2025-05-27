@@ -30,9 +30,9 @@
               class="tp-category-main-thumb include-bg transition-3"
               style="background-color: #f4f5f7; align-items: center"
             >
-            <a [routerLink]="['/filtered-products']" [queryParams]="{ categorie: item.productCategorieName}">
+            <a [routerLink]="['/filtered-products']" [queryParams]="{ categorie: item.categoryName}">
               <img 
-                [src]="item.productImage"
+                [src]="item.categoryImage"
                 class="image-style"
               />
             </a>
@@ -40,7 +40,7 @@
             <div class="tp-category-main-content">
               <h3 class="tp-category-main-title">
 
-                <a [routerLink]="['/filtered-products']" [queryParams]="{ categorie: item.productCategorieName}" >{{item.productCategorieName}}</a>
+                <a [routerLink]="['/filtered-products']" [queryParams]="{ categorie: item.categoryName}" >{{item.categoryName}}</a>
               </h3>
               
             </div>

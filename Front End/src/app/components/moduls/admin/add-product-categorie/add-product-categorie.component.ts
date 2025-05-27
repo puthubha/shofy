@@ -22,8 +22,8 @@ export class AddProductCategorieComponent implements OnInit {
     private AddProductCategorie: AddProductCategorieService
   ) {
     this.AddProductForm = new FormGroup({
-      productCategorieName: new FormControl('', Validators.required),
-      productImage: new FormControl('', Validators.required),
+      categoryName : new FormControl('', Validators.required),
+      categoryImage  : new FormControl('', Validators.required),
     });
   }
 
@@ -42,18 +42,24 @@ export class AddProductCategorieComponent implements OnInit {
           this.isImageSaved = true;
         };
       };
-
       reader.readAsDataURL(fileInput.target.files[0]);
     }
   }
 
   addProduct() {
-    this.AddProductForm.value.productImage = this.cardImageBase64;
+    this.AddProductForm.value.categoryImage = this.cardImageBase64;
 
     this.AddProductCategorie.postProductCategorie(
-      this.AddProductForm.value
-    ).subscribe();
-    this.SweetAlert.success('Product Categorie Added successfully');
-    this.Router.navigateByUrl('/product-categoties');
+      this.AddProductForm.value).subscribe({
+        next:(responce:any)=>{
+        if(responce && responce.status){
+          this.SweetAlert.success(responce.message);
+          this.Router.navigateByUrl('/product-categoties');
+        }
+      },
+      error:(error:any)=>{
+        this.SweetAlert.error(error.error.message);
+      }
+    });
   }
 }

@@ -15,6 +15,7 @@ import com.backend.backend.dto.LoginRequest;
 import com.backend.backend.dto.LoginResponse;
 import com.backend.backend.dto.UserDataResponse;
 import com.backend.backend.entity.SignUpUserData;
+import com.backend.backend.exceptionHandler.RuntimeConflictException;
 import com.backend.backend.interfaces.SignUpInterface;
 
 @Service
@@ -30,11 +31,12 @@ public class SignUpService {
         Map<String, Object> response = new HashMap<>();
 
         Optional<SignUpUserData> existingUser = signUpInterface.findByEmailId(userData.getEmailId());
-
+        
         if (existingUser.isPresent()) {
-            response.put("status", false);
-            response.put("message", "Email already exists");
-            return response;
+            throw new RuntimeConflictException("Email already exists");
+            // response.put("status", false);
+            // response.put("message", "Email already exists");
+            // return response;
         }
 
         SignUpUserData savedUser = signUpInterface.save(userData);

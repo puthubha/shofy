@@ -37,8 +37,10 @@ export class AddProductComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.AddProductCategorie.getProductCategorie().subscribe((data) => {
-      this.categorieApiData = data;
+    this.AddProductCategorie.getProductCategorie().subscribe((responce:any) => {
+      if(responce && responce.status){
+        this.categorieApiData = responce.data;
+      }
     });
   }
 
