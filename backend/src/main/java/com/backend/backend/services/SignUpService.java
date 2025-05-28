@@ -34,9 +34,6 @@ public class SignUpService {
         
         if (existingUser.isPresent()) {
             throw new RuntimeConflictException("Email already exists");
-            // response.put("status", false);
-            // response.put("message", "Email already exists");
-            // return response;
         }
 
         SignUpUserData savedUser = signUpInterface.save(userData);

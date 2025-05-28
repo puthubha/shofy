@@ -423,7 +423,6 @@
   </section>
   <!-- banner area end -->
 
-
   <!-- product area start -->
   <section class="tp-product-area pt-115 pb-80">
     <div class="container">
@@ -458,7 +457,9 @@
                     aria-selected="true"
                   >
                     All Collection
-                    <span class="tp-product-tab-tooltip">{{productApiData.length}}</span>
+                    <span class="tp-product-tab-tooltip">{{
+                      productApiData.length
+                    }}</span>
                   </button>
                   <button
                     class="nav-link"
@@ -471,7 +472,9 @@
                     aria-selected="false"
                   >
                     Bracelets
-                    <span class="tp-product-tab-tooltip">{{braceletData.length}}</span>
+                    <span class="tp-product-tab-tooltip">{{
+                      braceletData.length
+                    }}</span>
                   </button>
                   <button
                     class="nav-link"
@@ -484,7 +487,9 @@
                     aria-selected="false"
                   >
                     Necklaces
-                    <span class="tp-product-tab-tooltip">{{necklaceData.length}}</span>
+                    <span class="tp-product-tab-tooltip">{{
+                      necklaceData.length
+                    }}</span>
                   </button>
                   <button
                     class="nav-link"
@@ -497,9 +502,10 @@
                     aria-selected="false"
                   >
                     Earrings
-                    <span class="tp-product-tab-tooltip">{{earringData.length}}</span>
+                    <span class="tp-product-tab-tooltip">{{
+                      earringData.length
+                    }}</span>
                   </button>
-
                 </div>
               </nav>
             </div>
@@ -517,11 +523,21 @@
               tabindex="0"
             >
               <div class="row">
-                <div class="col-xl-3 col-lg-4 col-sm-6" *ngFor="let item of productApiData | paginate:{ itemsPerPage: count, currentPage: p }">
+                <div
+                  class="col-xl-3 col-lg-4 col-sm-6"
+                  *ngFor="
+                    let item of productApiData
+                      | paginate : { itemsPerPage: count, currentPage: p }
+                  "
+                >
                   <div class="tp-product-item-4 p-relative mb-40">
                     <div class="tp-product-thumb-4 w-img fix">
-                      <a [routerLink]="['/product-detail', item._id]">
-                        <img style="height:300px; width:250px" [src]="item.productImage" alt="" />
+                      <a [routerLink]="['/product-detail', item.id]">
+                        <img
+                          style="height: 300px; width: 250px"
+                          [src]="item.productImage"
+                          alt=""
+                        />
                       </a>
                       <!-- product action -->
                       <div
@@ -529,33 +545,35 @@
                       >
                         <div
                           class="tp-product-action-item-3 d-flex flex-column"
-                        >
-                      </div>
+                        ></div>
                       </div>
                     </div>
                     <div class="tp-product-content-4">
                       <h3 class="tp-product-title-4">
-                        <a [routerLink]="['/product-detail', item._id]"
-                          >{{item.productName}}</a
-                        >
+                        <a [routerLink]="['/product-detail', item.id]">{{
+                          item.productName
+                        }}</a>
                       </h3>
                       <div class="tp-product-info-4">
-                        <p>{{item.productCategorie}}</p>
+                        <p>{{ item.categoryId }}</p>
                       </div>
 
                       <div class="tp-product-price-inner-4">
                         <div class="tp-product-price-wrapper-4">
-                          <span class="tp-product-price-4">${{item.productPrice}}</span>
+                          <span class="tp-product-price-4"
+                            >${{ item.price }}</span
+                          >
                         </div>
-                        <div class="tp-product-price-add-to-cart">
-                        </div>
+                        <div class="tp-product-price-add-to-cart"></div>
                       </div>
                     </div>
                   </div>
                 </div>
                 <div class="text-right">
-                  <pagination-controls (pageChange)="p = $event"></pagination-controls>
-                </div>      
+                  <pagination-controls
+                    (pageChange)="p = $event"
+                  ></pagination-controls>
+                </div>
               </div>
             </div>
             <div
@@ -566,37 +584,40 @@
               tabindex="0"
             >
               <div class="row">
-                <div class="col-xl-3 col-lg-4 col-sm-6" *ngFor="let item of braceletData">
+                <div
+                  class="col-xl-3 col-lg-4 col-sm-6"
+                  *ngFor="let item of braceletData"
+                >
                   <div class="tp-product-item-4 p-relative mb-40">
                     <div class="tp-product-thumb-4 w-img fix">
-                      <a [routerLink]="['/product-detail', item._id]">
-                        <img style="height:300px; width:250px" [src]="item.productImage" alt="" />
+                      <a [routerLink]="['/product-detail', item.id]">
+                        <img
+                          style="height: 300px; width: 250px"
+                          [src]="item.productImage"
+                          alt=""
+                        />
                       </a>
 
                       <!-- product action -->
-                      
                     </div>
                     <div class="tp-product-content-4">
                       <h3 class="tp-product-title-4">
-                        <a [routerLink]="['/product-detail', item._id]"
-                          >{{item.productName}}</a
-                        >
+                        <a [routerLink]="['/product-detail', item.id]">{{
+                          item.productName
+                        }}</a>
                       </h3>
                       <div class="tp-product-info-4">
-                        <p>{{item.productCategorie}}</p>
+                        <p>{{ item.categoryId }}</p>
                       </div>
 
                       <div class="tp-product-price-inner-4">
                         <div class="tp-product-price-wrapper-4">
-                          <span class="new-price"
-                            >₹{{item.productPrice}}</span
-                          >
+                          <span class="new-price">₹{{ item.price }}</span>
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
-                
               </div>
             </div>
             <div
@@ -607,25 +628,32 @@
               tabindex="0"
             >
               <div class="row">
-                <div class="col-xl-3 col-lg-4 col-sm-6" *ngFor="let item of necklaceData">
+                <div
+                  class="col-xl-3 col-lg-4 col-sm-6"
+                  *ngFor="let item of necklaceData"
+                >
                   <div class="tp-product-item-4 p-relative mb-40">
                     <div class="tp-product-thumb-4 w-img fix">
-                      <a [routerLink]="['/product-detail', item._id]">
-                        <img style="height:300px; width:250px" [src]="item.productImage" alt="" />
+                      <a [routerLink]="['/product-detail', item.id]">
+                        <img
+                          style="height: 300px; width: 250px"
+                          [src]="item.productImage"
+                          alt=""
+                        />
                       </a>
                     </div>
                     <div class="tp-product-content-4">
                       <h3 class="tp-product-title-4">
-                        <a [routerLink]="['/product-detail', item._id]">{{item.productName}}</a>
+                        <a [routerLink]="['/product-detail', item.id]">{{
+                          item.productName
+                        }}</a>
                       </h3>
                       <div class="tp-product-info-4">
-                        <p>{{item.productCategorie}}</p>
+                        <p>{{ item.categoryId }}</p>
                       </div>
                       <div class="tp-product-price-inner-4">
                         <div class="tp-product-price-wrapper-4">
-                          <span class="new-price"
-                            >₹{{item.productPrice}}</span
-                          >
+                          <span class="new-price">₹{{ item.price }}</span>
                         </div>
                       </div>
                     </div>
@@ -641,24 +669,31 @@
               tabindex="0"
             >
               <div class="row">
-                <div class="col-xl-3 col-lg-4 col-sm-6" *ngFor="let item of earringData">
+                <div
+                  class="col-xl-3 col-lg-4 col-sm-6"
+                  *ngFor="let item of earringData"
+                >
                   <div class="tp-product-item-4 p-relative mb-40">
                     <div class="tp-product-thumb-4 w-img fix">
-                      <a [routerLink]="['/product-detail', item._id]">
-                        <img style="height:300px; width:250px" [src]="item.productImage" alt="" />
+                      <a [routerLink]="['/product-detail', item.id]">
+                        <img
+                          style="height: 300px; width: 250px"
+                          [src]="item.productImage"
+                          alt=""
+                        />
                       </a>
                     </div>
                     <div class="tp-product-content-4">
                       <h3 class="tp-product-title-4">
-                        <a [routerLink]="['/product-detail', item._id]"
-                          >{{item.productName}}</a
-                        >
+                        <a [routerLink]="['/product-detail', item.id]">{{
+                          item.productName
+                        }}</a>
                       </h3>
                       <div class="tp-product-info-4">
-                        <p>{{item.productCategorie}}</p>
+                        <p>{{ item.categoryId }}</p>
                       </div>
                       <div class="tp-product-price-wrapper-4">
-                        <span>₹{{item.productPrice}}</span>
+                        <span>₹{{ item.price }}</span>
                       </div>
                     </div>
                   </div>
@@ -677,7 +712,6 @@
     <div class="container-fluid"></div>
   </section>
   <!-- collection area end -->
-
 
   <!-- instagram area start -->
   <section class="tp-instagram-area tp-instagram-style-4 pt-110 pb-10">

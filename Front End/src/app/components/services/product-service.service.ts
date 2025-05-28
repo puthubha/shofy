@@ -8,15 +8,19 @@ import { ProductData } from '../interface';
 export class ProductServiceService {
   constructor(private http: HttpClient) {}
 
-  private productApi =
-    'http://localhost:8000/product-detail';  
-    //https://6633f1aff7d50bbd9b4b2919.mockapi.io/product-details
+  private productApi = 'http://localhost:8080';
 
-  getProductData() {
-    return this.http.get<ProductData[]>(this.productApi);
+  getProductData(isGetALlProductList, productId = 0) {
+    if (isGetALlProductList) {
+      return this.http.get<ProductData[]>(this.productApi + '/productDetail');
+    } else {
+      return this.http.get<ProductData[]>(
+        this.productApi + '/productDetail/' + productId
+      );
+    }
   }
 
-  postProductData(value: ProductData) {
-    return this.http.post(this.productApi, value);
+  addProductData(value: ProductData) {
+    return this.http.post(this.productApi + '/addProductDetail', value);
   }
 }

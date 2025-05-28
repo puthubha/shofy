@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductServiceService } from '../../services/product-service.service';
 import { ProductData } from '../../interface';
+import { SweetAlertService } from '../../services/sweet-alert.service';
 
 @Component({
   selector: 'app-all-products',
@@ -12,11 +13,24 @@ export class AllProductsComponent implements OnInit {
   p: number = 1;
   count: number = 8;
 
-  constructor(private ProductService: ProductServiceService) {}
+  constructor(
+    private ProductService: ProductServiceService,
+    private SweetAlert: SweetAlertService
+  ) {}
 
   ngOnInit(): void {
-    this.ProductService.getProductData().subscribe((data) => {
-      this.productApiData = data;
+    this.ProductService.getProductData(true).subscribe({
+      next: (responce: any) => {
+        if (responce) {
+          this.productApiData = responce.data;
+          this.SweetAlert.success(responce.message);
+        }
+      },
+      error: (err: any) => {
+        if (err.error) {
+          this.SweetAlert.error(err.error.message);
+        }
+      },
     });
   }
 }

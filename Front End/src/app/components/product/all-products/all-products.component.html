@@ -51,13 +51,21 @@
                   <div
                     class="row row-cols-xxl-5 row-cols-xl-4 row-cols-lg-3 row-cols-md-2 row-cols-sm-2 row-cols-1"
                   >
-                    <div class="col" style="margin-right: 5%;" *ngFor="let item of productApiData | paginate:{ itemsPerPage: count, currentPage: p } ">
+                    <div
+                      class="col"
+                      style="margin-right: 5%"
+                      *ngFor="
+                        let item of productApiData
+                          | paginate : { itemsPerPage: count, currentPage: p }
+                      "
+                    >
                       <div class="tp-product-item-2 mb-40">
                         <div
                           class="tp-product-thumb-2 p-relative z-index-1 fix w-img"
                         >
-                          <a [routerLink]="['/product-detail', item._id]">
-                            <img style="height:300px; width:250px"
+                          <a [routerLink]="['/product-detail', item.id]">
+                            <img
+                              style="height: 300px; width: 250px"
                               [src]="item.productImage"
                               alt=""
                             />
@@ -65,12 +73,12 @@
                         </div>
                         <div class="tp-product-content-2 pt-15">
                           <div class="tp-product-tag-2">
-                            <a>{{item.productCategorie}}</a>
+                            <a>{{ item.categoryId }}</a>
                           </div>
                           <h3 class="tp-product-title-2">
-                            <a  [routerLink]="['/product-detail', item._id]"
-                              >{{item.productName}}</a
-                            >
+                            <a [routerLink]="['/product-detail', item.id]">{{
+                              item.productName
+                            }}</a>
                           </h3>
                           <div
                             class="tp-product-rating-icon tp-product-rating-icon-2"
@@ -82,11 +90,11 @@
                             <span><i class="fa-solid fa-star"></i></span>
                           </div>
                           <div class="tp-product-price-wrapper-2">
-                            <span class="tp-product-price-2 new-price"
-                              > ₹{{item.productDiscountPrice}}</span
+                            <span class="tp-product-price-2 new-price">
+                              ₹{{ item.discountPrice }}</span
                             >
-                            <span class="tp-product-price-2 old-price"
-                              > ₹{{item.productPrice}}</span
+                            <span class="tp-product-price-2 old-price">
+                              ₹{{ item.price }}</span
                             >
                           </div>
                         </div>
@@ -97,7 +105,9 @@
 
                 <!-- pagination controls -->
                 <div class="text-right">
-                  <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                  <pagination-controls
+                    (pageChange)="p = $event"
+                  ></pagination-controls>
                 </div>
                 <div
                   class="tab-pane fade"

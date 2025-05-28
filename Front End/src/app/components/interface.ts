@@ -23,11 +23,11 @@ export interface LoginData {
 
 export interface ProductData {
   productName: string;
-  productCategorie: string;
-  productPrice: number;
-  productDiscountPrice: number;
-  productImage: number;
-  _id: number;
+  categoryId: number;
+  price: number;
+  discountPrice: number;
+  productImage: string;
+  id: number;
 }
 export interface contactApiData {
   id: Number;
@@ -38,7 +38,7 @@ export interface contactApiData {
 }
 
 export interface productCategorie {
-  id: number;
+  categoryId: number;
   categoryName: string;
   categoryImage: string;
 }

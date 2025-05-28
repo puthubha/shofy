@@ -1,4 +1,3 @@
-
 <main>
   <!-- breadcrumb area start -->
   <section class="breadcrumb__area include-bg pt-100 pb-50 breadcrumb__padding">
@@ -6,10 +5,10 @@
       <div class="row">
         <div class="col-xxl-12">
           <div class="breadcrumb__content p-relative z-index-1">
-            <h3 class="breadcrumb__title">{{categorie}}</h3>
+            <h3 class="breadcrumb__title">{{ categorie }}</h3>
             <div class="breadcrumb__list">
               <span><a routerLink="/home">Home</a></span>
-              <span>{{categorie}}</span>
+              <span>{{ categorie }}</span>
             </div>
           </div>
         </div>
@@ -52,27 +51,35 @@
                   <div
                     class="row row-cols-xxl-5 row-cols-xl-4 row-cols-lg-3 row-cols-md-2 row-cols-sm-2 row-cols-1"
                   >
-                    <div class="col" *ngFor="let item of filteredData | paginate:{ itemsPerPage: count, currentPage: p }">
+                    <div
+                      class="col"
+                      *ngFor="
+                        let item of productApiData
+                          | paginate : { itemsPerPage: count, currentPage: p }
+                      "
+                    >
                       <div class="tp-product-item-2 mb-40">
                         <div
                           class="tp-product-thumb-2 p-relative z-index-1 fix w-img"
                         >
-                          <a [routerLink]="['/product-detail', item._id]">
-                            <img style="height:300px; width:250px"
+                          <a [routerLink]="['/product-detail', item.id]">
+                            <img
+                              style="height: 300px; width: 250px"
                               [src]="item.productImage"
                               alt=""
                             />
                           </a>
-                          
                         </div>
                         <div class="tp-product-content-2 pt-15">
                           <div class="tp-product-tag-2">
-                            <a [routerLink]="['/product-detail', item._id]">{{item.productCategorie}}</a>
+                            <a [routerLink]="['/product-detail', item.id]">{{
+                              item.categoryId
+                            }}</a>
                           </div>
                           <h3 class="tp-product-title-2">
-                            <a [routerLink]="['/product-detail', item._id]"
-                              >{{item.productName}}</a
-                            >
+                            <a [routerLink]="['/product-detail', item.id]">{{
+                              item.productName
+                            }}</a>
                           </h3>
                           <div
                             class="tp-product-rating-icon tp-product-rating-icon-2"
@@ -85,22 +92,23 @@
                           </div>
                           <div class="tp-product-price-wrapper-2">
                             <span class="tp-product-price-2 new-price"
-                              >₹{{item.productDiscountPrice}}</span
+                              >₹{{ item.discountPrice }}</span
                             >
                             <span class="tp-product-price-2 old-price"
-                              >₹{{item.productPrice}}</span
+                              >₹{{ item.price }}</span
                             >
                           </div>
                         </div>
                       </div>
                     </div>
                   </div>
-                  
+
                   <div class="text-right">
-                    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                    <pagination-controls
+                      (pageChange)="p = $event"
+                    ></pagination-controls>
                   </div>
                 </div>
-                
               </div>
             </div>
           </div>
@@ -116,6 +124,5 @@
     tabindex="-1"
     aria-labelledby="producQuickViewModal"
     aria-hidden="true"
-  >
-  </div>
+  ></div>
 </main>

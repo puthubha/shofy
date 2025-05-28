@@ -24,21 +24,19 @@ export class HomeComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    this.ProductService.getProductData().subscribe((data: ProductData[]) => {
-      this.productApiData = data;
-
-      this.braceletData = this.productApiData.filter(
-        (b) => b.productCategorie === 'bracelets'
-      );
-      this.earringData = this.productApiData.filter(
-        (c) => c.productCategorie === 'earrings'
-      );
-      this.necklaceData = this.productApiData.filter(
-        (d) => d.productCategorie === 'necklaces'
-      );
-
-      this.LoginSession.loginSession();
-    });
+    // this.ProductService.getProductData().subscribe((data: ProductData[]) => {
+    //   this.productApiData = data;
+    // this.braceletData = this.productApiData.filter(
+    //   (b) => b.productCategorie === 'bracelets'
+    // );
+    // this.earringData = this.productApiData.filter(
+    //   (c) => c.productCategorie === 'earrings'
+    // );
+    // this.necklaceData = this.productApiData.filter(
+    //   (d) => d.productCategorie === 'necklaces'
+    // );
+    //   this.LoginSession.loginSession();
+    // });
   }
 
   ngOnDestroy() {

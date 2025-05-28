@@ -21,7 +21,13 @@
   <section class="tp-category-area pb-120">
     <div class="container">
       <div class="row">
-        <div class="col-lg-4 col-sm-6" *ngFor="let item of categorieApiData | paginate:{ itemsPerPage: count, currentPage: p }">
+        <div
+          class="col-lg-4 col-sm-6"
+          *ngFor="
+            let item of categorieApiData
+              | paginate : { itemsPerPage: count, currentPage: p }
+          "
+        >
           <div
             class="tp-category-main-box mb-25 p-relative fix"
             data-bg-color="#F3F5F7"
@@ -30,26 +36,27 @@
               class="tp-category-main-thumb include-bg transition-3"
               style="background-color: #f4f5f7; align-items: center"
             >
-            <a [routerLink]="['/filtered-products']" [queryParams]="{ categorie: item.categoryName}">
-              <img 
-                [src]="item.categoryImage"
-                class="image-style"
-              />
-            </a>
+              <a
+                [routerLink]="['/filtered-products']"
+                [queryParams]="{ categorie: item.categoryId }"
+              >
+                <img [src]="item.categoryImage" class="image-style" />
+              </a>
             </div>
             <div class="tp-category-main-content">
               <h3 class="tp-category-main-title">
-
-                <a [routerLink]="['/filtered-products']" [queryParams]="{ categorie: item.categoryName}" >{{item.categoryName}}</a>
+                <a
+                  [routerLink]="['/filtered-products']"
+                  [queryParams]="{ categorie: item.categoryId }"
+                  >{{ item.categoryName }}</a
+                >
               </h3>
-              
             </div>
           </div>
         </div>
         <div class="text-right">
           <pagination-controls (pageChange)="p = $event"></pagination-controls>
         </div>
-        
       </div>
     </div>
   </section>
