@@ -29,7 +29,7 @@ export interface ProductData {
   productImage: string;
   id: number;
 }
-export interface contactApiData {
+export interface faqQuestionApiData {
   id: Number;
   name: string;
   email: string;

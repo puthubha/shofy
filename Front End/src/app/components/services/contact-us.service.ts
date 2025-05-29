@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { contactApiData } from '../interface';
+import { faqQuestionApiData } from '../interface';
 
 @Injectable({
   providedIn: 'root',
@@ -8,13 +8,13 @@ import { contactApiData } from '../interface';
 export class ContactUsService {
   constructor(private http: HttpClient) {}
 
-  private contactApi = 'http://localhost:8000/contact';   //https://6633f1aff7d50bbd9b4b2919.mockapi.io/contact
+  private contactApi = 'http://localhost:8080/faqQuestions';
 
-  getContactData() {
-    return this.http.get<contactApiData[]>(this.contactApi);
+  getFaqQuestionData() {
+    return this.http.get<faqQuestionApiData[]>(this.contactApi);
   }
 
-  postContactData(value: contactApiData[]) {
-    return this.http.post<contactApiData[]>(this.contactApi, value);
+  postFaqQuestionData(value: faqQuestionApiData[]) {
+    return this.http.post<faqQuestionApiData[]>(this.contactApi, value);
   }
 }
