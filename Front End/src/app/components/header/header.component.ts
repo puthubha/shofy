@@ -9,7 +9,7 @@ import { SweetAlertService } from '../services/sweet-alert.service';
   styleUrls: ['./header.component.css'],
 })
 export class HeaderComponent implements OnInit {
-  localStorageData:SignUpApidata;
+  localStorageData: SignUpApidata;
   constructor(private Router: Router, private SweetAlert: SweetAlertService) {}
 
   ngOnInit(): void {}
@@ -22,14 +22,25 @@ export class HeaderComponent implements OnInit {
     document.querySelector('#open').classList.remove('offcanvas-opened');
   }
 
-  toggelButton() {
-    const ulEle = document.querySelector('#abc');
-    const getEle = document.querySelector('.tp-setting-list-open');
-
-    if (!getEle && ulEle) {
-      ulEle?.classList.add('tp-setting-list-open');
-    } else {
-      ulEle?.classList.remove('tp-setting-list-open');
+  toggelButton(id: string) {
+    const ulEle = document.getElementById(id);
+    if (ulEle) {
+      if (id == 'offcanvasArea') {
+        const bodyoverlay = document.getElementsByClassName('body-overlay');
+        const isOpen = ulEle.classList.toggle('offcanvas-opened');
+        if (bodyoverlay) {
+          bodyoverlay[0].classList.toggle('opened');
+        }
+        
+        // Prevent background scroll when open
+        if (isOpen) {
+          document.body.style.overflow = 'hidden';
+        } else {
+          document.body.style.overflow = '';
+        }
+      } else {
+        ulEle.classList.toggle('tp-setting-list-open');
+      }
     }
   }
 
@@ -52,6 +63,6 @@ export class HeaderComponent implements OnInit {
   }
 
   onLogOut() {
-   this.SweetAlert.logOut();
+    this.SweetAlert.logOut();
   }
 }

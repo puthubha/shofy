@@ -1,88 +1,444 @@
 <main>
   <!-- slider area start -->
   <section class="tp-slider-area p-relative z-index-1 fix">
-    <div class="tp-slider-active-4 khaki-bg">
-      <div
-        class="tp-slider-item-4 tp-slider-height-4 p-relative khaki-bg d-flex align-items-center"
-      >
-        <div class="tp-slider-thumb-4">
-          <img src="assets/img/slider/4/slider-3.png" alt="" />
-          <div class="tp-slider-thumb-4-shape">
-            <span class="tp-slider-thumb-4-shape-1"></span>
-            <span class="tp-slider-thumb-4-shape-2"></span>
-          </div>
-        </div>
+    <div class="tp-slider-active-4 khaki-bg slick-initialized slick-slider">
+      <div class="slick-list draggable">
+        <div class="slick-track" 
+        [ngStyle]="{'opacity': '1', 'width': screenWidth * 4 + 'px'}"
+        >
+          <div
+            class="tp-slider-item-4 tp-slider-height-4 p-relative khaki-bg d-flex align-items-center slick-slide slick-current slick-active"
+            id="firstSlide"
+            data-slick-index="0"
+            aria-hidden="false"
+            [style]=" getSliderStyle(0)"
+            tabindex="0"
+          >
+            <div class="tp-slider-thumb-4">
+              <img src="assets/img/slider/4/slider-1.png" alt="" />
+              <div class="tp-slider-thumb-4-shape">
+                <span class="tp-slider-thumb-4-shape-1"></span>
+                <span class="tp-slider-thumb-4-shape-2"></span>
+              </div>
+            </div>
 
-        <div class="tp-slider-video-wrapper">
-          <!-- video -->
-          <div class="tp-slider-video transition-3">
-            <video loop>
-              <source
-                type="video/mp4"
-                src="http://weblearnbd.net/tphtml/videos/shofy/jewellery-1.mp4#t=3"
-              />
-            </video>
-          </div>
-          <!-- video button -->
-          <div class="tp-slider-play">
-            <button
-              type="button"
-              class="tp-slider-play-btn tp-slider-video-move-btn tp-video-toggle-btn"
-            >
-              <img
-                class="text-shape"
-                src="assets/img/slider/4/shape/rounded-test.png"
-                alt=""
-              />
-              <span class="play-icon">
-                <svg
-                  width="19"
-                  height="21"
-                  viewBox="0 0 19 21"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M0.607695 20.7988L0.607695 0.0142176L18.6077 10.4065L0.607695 20.7988Z"
-                    fill="currentColor"
+            <div class="tp-slider-video-wrapper">
+              <!-- video -->
+              <div class="tp-slider-video transition-3">
+                <video loop="">
+                  <source
+                    type="video/mp4"
+                    src="http://weblearnbd.net/tphtml/videos/shofy/jewellery-1.mp4#t=3"
                   />
-                </svg>
-              </span>
-              <span class="pause-icon">
-                <svg
-                  width="15"
-                  height="20"
-                  viewBox="0 0 15 20"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
+                </video>
+              </div>
+              <!-- video button -->
+              <div class="tp-slider-play">
+                <button
+                  type="button"
+                  class="tp-slider-play-btn tp-slider-video-move-btn tp-video-toggle-btn"
+                  tabindex="0"
                 >
-                  <rect width="5" height="20" fill="currentColor" />
-                  <rect x="10" width="5" height="20" fill="currentColor" />
-                </svg>
-              </span>
-            </button>
+                  <img
+                    class="text-shape"
+                    src="assets/img/slider/4/shape/rounded-test.png"
+                    alt=""
+                  />
+                  <span class="play-icon">
+                    <svg
+                      width="19"
+                      height="21"
+                      viewBox="0 0 19 21"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M0.607695 20.7988L0.607695 0.0142176L18.6077 10.4065L0.607695 20.7988Z"
+                        fill="currentColor"
+                      ></path>
+                    </svg>
+                  </span>
+                  <span class="pause-icon">
+                    <svg
+                      width="15"
+                      height="20"
+                      viewBox="0 0 15 20"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <rect width="5" height="20" fill="currentColor"></rect>
+                      <rect
+                        x="10"
+                        width="5"
+                        height="20"
+                        fill="currentColor"
+                      ></rect>
+                    </svg>
+                  </span>
+                </button>
+              </div>
+            </div>
+
+            <div class="container">
+              <div class="row align-items-center">
+                <div class="col-xl-6 col-lg-6 col-md-8">
+                  <div class="tp-slider-content-4 p-relative z-index-1">
+                    <span>The original</span>
+                    <h3 class="tp-slider-title-4">Shine bright</h3>
+
+                    <div class="tp-slider-btn-4">
+                      <a
+                        href="shop.html"
+                        class="tp-btn tp-btn-border tp-btn-border-white"
+                        tabindex="0"
+                        >Discover Now</a
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
-        </div>
+          <div
+            class="tp-slider-item-4 tp-slider-height-4 p-relative khaki-bg d-flex align-items-center slick-slide"
+            id="secondSlide"
+            data-slick-index="1"
+            aria-hidden="true"
+            [style]=" getSliderStyle(1)"
+            tabindex="-1"
+          >
+            <div class="tp-slider-thumb-4">
+              <img src="assets/img/slider/4/slider-2.png" alt="" />
+              <div class="tp-slider-thumb-4-shape">
+                <span class="tp-slider-thumb-4-shape-1"></span>
+                <span class="tp-slider-thumb-4-shape-2"></span>
+              </div>
+            </div>
 
-        <div class="container">
-          <div class="row align-items-center">
-            <div class="col-xl-6 col-lg-6 col-md-8">
-              <div class="tp-slider-content-4 p-relative z-index-1">
-                <span>The original</span>
-                <h3 class="tp-slider-title-4">Gold Plateted</h3>
+            <div class="tp-slider-video-wrapper">
+              <!-- video -->
+              <div class="tp-slider-video transition-3">
+                <video loop="">
+                  <source
+                    type="video/mp4"
+                    src="http://weblearnbd.net/tphtml/videos/shofy/jewellery-1.mp4#t=3"
+                  />
+                </video>
+              </div>
+              <!-- video button -->
+              <div class="tp-slider-play">
+                <button
+                  type="button"
+                  class="tp-slider-play-btn tp-slider-video-move-btn tp-video-toggle-btn"
+                  tabindex="-1"
+                >
+                  <img
+                    class="text-shape"
+                    src="assets/img/slider/4/shape/rounded-test.png"
+                    alt=""
+                  />
+                  <span class="play-icon">
+                    <svg
+                      width="19"
+                      height="21"
+                      viewBox="0 0 19 21"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M0.607695 20.7988L0.607695 0.0142176L18.6077 10.4065L0.607695 20.7988Z"
+                        fill="currentColor"
+                      ></path>
+                    </svg>
+                  </span>
+                  <span class="pause-icon">
+                    <svg
+                      width="15"
+                      height="20"
+                      viewBox="0 0 15 20"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <rect width="5" height="20" fill="currentColor"></rect>
+                      <rect
+                        x="10"
+                        width="5"
+                        height="20"
+                        fill="currentColor"
+                      ></rect>
+                    </svg>
+                  </span>
+                </button>
+              </div>
+            </div>
 
-                <div class="tp-slider-btn-4">
-                  <a
-                    routerLink="/all-products"
-                    class="tp-btn tp-btn-border tp-btn-border-white"
-                    >Discover Now</a
-                  >
+            <div class="container">
+              <div class="row align-items-center">
+                <div class="col-xl-7 col-lg-6 col-md-8">
+                  <div class="tp-slider-content-4 p-relative z-index-1">
+                    <span>The original</span>
+                    <h3 class="tp-slider-title-4">Creative Design</h3>
+
+                    <div class="tp-slider-btn-4">
+                      <a
+                        href="shop.html"
+                        class="tp-btn tp-btn-border tp-btn-border-white"
+                        tabindex="-1"
+                        >Discover Now</a
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="tp-slider-item-4 tp-slider-height-4 p-relative khaki-bg d-flex align-items-center slick-slide"
+            id="thirdSlide"
+            data-slick-index="2"
+            aria-hidden="true"
+            [style]=" getSliderStyle(2)"
+            tabindex="-1"
+          >
+            <div class="tp-slider-thumb-4">
+              <img src="assets/img/slider/4/slider-3.png" alt="" />
+              <div class="tp-slider-thumb-4-shape">
+                <span class="tp-slider-thumb-4-shape-1"></span>
+                <span class="tp-slider-thumb-4-shape-2"></span>
+              </div>
+            </div>
+
+            <div class="tp-slider-video-wrapper">
+              <!-- video -->
+              <div class="tp-slider-video transition-3">
+                <video loop="">
+                  <source
+                    type="video/mp4"
+                    src="http://weblearnbd.net/tphtml/videos/shofy/jewellery-1.mp4#t=3"
+                  />
+                </video>
+              </div>
+              <!-- video button -->
+              <div class="tp-slider-play">
+                <button
+                  type="button"
+                  class="tp-slider-play-btn tp-slider-video-move-btn tp-video-toggle-btn"
+                  tabindex="-1"
+                >
+                  <img
+                    class="text-shape"
+                    src="assets/img/slider/4/shape/rounded-test.png"
+                    alt=""
+                  />
+                  <span class="play-icon">
+                    <svg
+                      width="19"
+                      height="21"
+                      viewBox="0 0 19 21"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M0.607695 20.7988L0.607695 0.0142176L18.6077 10.4065L0.607695 20.7988Z"
+                        fill="currentColor"
+                      ></path>
+                    </svg>
+                  </span>
+                  <span class="pause-icon">
+                    <svg
+                      width="15"
+                      height="20"
+                      viewBox="0 0 15 20"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <rect width="5" height="20" fill="currentColor"></rect>
+                      <rect
+                        x="10"
+                        width="5"
+                        height="20"
+                        fill="currentColor"
+                      ></rect>
+                    </svg>
+                  </span>
+                </button>
+              </div>
+            </div>
+
+            <div class="container">
+              <div class="row align-items-center">
+                <div class="col-xl-6 col-lg-6 col-md-8">
+                  <div class="tp-slider-content-4 p-relative z-index-1">
+                    <span>The original</span>
+                    <h3 class="tp-slider-title-4">Gold Plateted</h3>
+
+                    <div class="tp-slider-btn-4">
+                      <a
+                        href="shop.html"
+                        class="tp-btn tp-btn-border tp-btn-border-white"
+                        tabindex="-1"
+                        >Discover Now</a
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="tp-slider-item-4 tp-slider-height-4 p-relative khaki-bg d-flex align-items-center slick-slide"
+            id="fourthSlide"
+            data-slick-index="3"
+            aria-hidden="true"
+            [style]=" getSliderStyle(3)"
+            tabindex="-1"
+          >
+            <div class="tp-slider-thumb-4">
+              <img src="assets/img/slider/4/slider-4.png" alt="" />
+              <div class="tp-slider-thumb-4-shape">
+                <span class="tp-slider-thumb-4-shape-1"></span>
+                <span class="tp-slider-thumb-4-shape-2"></span>
+              </div>
+            </div>
+
+            <div class="tp-slider-video-wrapper">
+              <!-- video -->
+              <div class="tp-slider-video transition-3">
+                <video loop="">
+                  <source
+                    type="video/mp4"
+                    src="http://weblearnbd.net/tphtml/videos/shofy/jewellery-1.mp4#t=3"
+                  />
+                </video>
+              </div>
+              <!-- video button -->
+              <div class="tp-slider-play">
+                <button
+                  type="button"
+                  class="tp-slider-play-btn tp-slider-video-move-btn tp-video-toggle-btn"
+                  tabindex="-1"
+                >
+                  <img
+                    class="text-shape"
+                    src="assets/img/slider/4/shape/rounded-test.png"
+                    alt=""
+                  />
+                  <span class="play-icon">
+                    <svg
+                      width="19"
+                      height="21"
+                      viewBox="0 0 19 21"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M0.607695 20.7988L0.607695 0.0142176L18.6077 10.4065L0.607695 20.7988Z"
+                        fill="currentColor"
+                      ></path>
+                    </svg>
+                  </span>
+                  <span class="pause-icon">
+                    <svg
+                      width="15"
+                      height="20"
+                      viewBox="0 0 15 20"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <rect width="5" height="20" fill="currentColor"></rect>
+                      <rect
+                        x="10"
+                        width="5"
+                        height="20"
+                        fill="currentColor"
+                      ></rect>
+                    </svg>
+                  </span>
+                </button>
+              </div>
+            </div>
+
+            <div class="container">
+              <div class="row align-items-center">
+                <div class="col-xl-6 col-lg-6 col-md-8">
+                  <div class="tp-slider-content-4 p-relative z-index-1">
+                    <span>The original</span>
+                    <h3 class="tp-slider-title-4">Unique shapes</h3>
+
+                    <div class="tp-slider-btn-4">
+                      <a
+                        href="shop.html"
+                        class="tp-btn tp-btn-border tp-btn-border-white"
+                        tabindex="-1"
+                        >Discover Now</a
+                      >
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
+    </div>
+
+    <div class="tp-slider-arrow-4">
+      <button
+        type="button"
+        class="tp-slider-3-button-prev slick-arrow"
+        (click)="changeSlide(false)"
+      >
+        <svg
+          width="16"
+          height="14"
+          viewBox="0 0 16 14"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M1.00073 6.99989L15 6.99989"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          ></path>
+          <path
+            d="M6.64648 1.5L1.00011 6.99954L6.64648 12.5"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          ></path>
+        </svg>
+      </button>
+      <button
+        type="button"
+        class="tp-slider-3-button-next slick-arrow"
+        (click)="changeSlide(true)"
+      >
+        <svg
+          width="16"
+          height="14"
+          viewBox="0 0 16 14"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M14.9993 6.99989L1 6.99989"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          ></path>
+          <path
+            d="M9.35352 1.5L14.9999 6.99954L9.35352 12.5"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          ></path>
+        </svg>
+      </button>
     </div>
   </section>
   <!-- slider area end -->

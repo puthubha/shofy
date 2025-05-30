@@ -1,0 +1,15 @@
+.tp-header-transparent {
+    top: 35px;
+}
+@media (max-width: 767px) {
+    .tp-header-transparent {
+        top: 0px;
+    }
+}
+
+.tp-header-sticky.header-sticky{
+    top: 0px;
+}
+#header-sticky{
+    z-index: -1;
+}

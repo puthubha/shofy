@@ -34,4 +34,22 @@ export class FooterComponent implements OnInit {
       this.Router.navigateByUrl('/signin');
     }
   }
+
+  toggelButton(id: string) {
+    const ulEle = document.getElementById(id);
+    if (ulEle) {
+      const bodyoverlay = document.getElementsByClassName('body-overlay');
+      const isOpen = ulEle.classList.toggle('offcanvas-opened');
+      if (bodyoverlay) {
+        bodyoverlay[0].classList.toggle('opened');
+      }
+
+      // Prevent background scroll when open
+      if (isOpen) {
+        document.body.style.overflow = 'hidden';
+      } else {
+        document.body.style.overflow = '';
+      }
+    }
+  }
 }

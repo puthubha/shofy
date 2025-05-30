@@ -2685,12 +2685,12 @@ div.demo img {
     margin-bottom: 30px;
   }
 }
-.offcanvas__content {
+/* .offcanvas__content {
   padding-bottom: 120px;
-}
+} */
 .offcanvas__wrapper {
   position: relative;
-  padding: 25px 20px 145px;
+  padding: 25px 20px 0px;
   z-index: 1;
   min-height: 100%;
 }
@@ -10665,8 +10665,12 @@ div.tp-blog-thumb img {
   border-color: var(--tp-common-white);
   color: var(--tp-common-white);
 }
+.tp-slider-arrow-4 button.tp-slider-3-button-prev {
+  left: 50px;
+}
+
 .tp-slider-arrow-4 button.tp-slider-3-button-next {
-  right: 190px;
+  right: 50px;
 }
 .tp-slider-video {
   position: absolute;
