@@ -15881,6 +15881,7 @@ div.tp-author-info-avater img {
 }
 .tp-product-list-thumb {
   flex: 0 0 auto;
+  border: 1px solid #E0E2E3;
 }
 @media only screen and (min-width: 992px) and (max-width: 1199px) {
   .tp-product-list-thumb {

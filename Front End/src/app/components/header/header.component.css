@@ -6,6 +6,9 @@
         top: 0px;
     }
 }
+.tp-style {
+    top: 35px !important;
+}
 
 .tp-header-sticky.header-sticky{
     top: 0px;

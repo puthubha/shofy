@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, HostListener, OnInit } from '@angular/core';
+import { NavigationEnd, Router } from '@angular/router';
 import { SignUpApidata } from '../interface';
 import { SweetAlertService } from '../services/sweet-alert.service';
+import { filter } from 'rxjs';
 
 @Component({
   selector: 'app-header',
@@ -10,9 +11,54 @@ import { SweetAlertService } from '../services/sweet-alert.service';
 })
 export class HeaderComponent implements OnInit {
   localStorageData: SignUpApidata;
-  constructor(private Router: Router, private SweetAlert: SweetAlertService) {}
+  isAddClassOnThisRoute: boolean = false;
+  isAddStickyClass: boolean = false;
+  isAddTpStyleClass: boolean = false;
+  constructor(private router: Router, private SweetAlert: SweetAlertService) {}
 
-  ngOnInit(): void {}
+  @HostListener('window:scroll', [])
+  onWindowScroll() {
+    const scrollY =
+      window.pageYOffset ||
+      document.documentElement.scrollTop ||
+      document.body.scrollTop ||
+      0;
+    const headerSticky = document.getElementById('header-sticky');
+    if (this.isAddClassOnThisRoute) {
+      headerSticky.classList.add('header-sticky');
+      if (scrollY > 0) {
+        headerSticky.style.zIndex = '1';
+        headerSticky.style.setProperty('top', '0px');
+      } else {
+        headerSticky.style.zIndex = '-1';
+        headerSticky.style.setProperty('top', '35px', 'important');
+      }
+    } else {
+      if (headerSticky) {
+        headerSticky.style.removeProperty('z-index');
+        headerSticky.style.removeProperty('top');
+      }
+    }
+  }
+
+  ngOnInit(): void {
+    this.router.events
+      .pipe(filter((event) => event instanceof NavigationEnd))
+      .subscribe((event: NavigationEnd) => {
+        if (event.urlAfterRedirects === '/product-categoties' || event.urlAfterRedirects === '/all-products') {
+          this.isAddClassOnThisRoute = true;
+          document
+            .getElementById('header-sticky')
+            .classList.add('header-sticky');
+
+          document
+            .getElementById('header-sticky')
+            ?.style.setProperty('top', '35px', 'important');
+        } else {
+          this.isAddClassOnThisRoute = false;
+        }
+      });
+  }
 
   open() {
     document.querySelector('#open').classList.add('offcanvas-opened');
@@ -31,7 +77,7 @@ export class HeaderComponent implements OnInit {
         if (bodyoverlay) {
           bodyoverlay[0].classList.toggle('opened');
         }
-        
+
         // Prevent background scroll when open
         if (isOpen) {
           document.body.style.overflow = 'hidden';
@@ -52,13 +98,13 @@ export class HeaderComponent implements OnInit {
 
     if (this.localStorageData && this.localStorageData.role) {
       if (this.localStorageData.role === 'admin') {
-        this.Router.navigateByUrl('/admin-panel');
+        this.router.navigateByUrl('/admin-panel');
       } else {
-        this.Router.navigateByUrl('/user-panel');
+        this.router.navigateByUrl('/user-panel');
       }
     } else {
       this.SweetAlert.error('Please Signin Your Self');
-      this.Router.navigateByUrl('/signin');
+      this.router.navigateByUrl('/signin');
     }
   }
 

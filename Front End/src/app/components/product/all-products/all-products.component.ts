@@ -11,7 +11,8 @@ import { SweetAlertService } from '../../services/sweet-alert.service';
 export class AllProductsComponent implements OnInit {
   productApiData: ProductData[] = [];
   p: number = 1;
-  count: number = 8;
+  count: number = 12;
+  selectedView: String = 'gridView';
 
   constructor(
     private ProductService: ProductServiceService,
@@ -32,5 +33,9 @@ export class AllProductsComponent implements OnInit {
         }
       },
     });
+  }
+
+  selectedViewChange(view: string) {
+    this.selectedView = view;
   }
 }

@@ -299,8 +299,11 @@
 	// 10. Sticky Header Js
 	windowOn.on('scroll', function () {
 		var scroll = $(window).scrollTop();
+		var currentPath = window.location.pathname;
 		if (scroll < 100) {
-			$("#header-sticky").removeClass("header-sticky");
+			if(currentPath !== '/product-categoties' || currentPath !== '/all-products'){
+				$("#header-sticky").removeClass("header-sticky");
+			}
 			$("#header-sticky-2").removeClass("header-sticky-2");
 		} else {
 			$("#header-sticky").addClass("header-sticky");
