@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { SignUpApidata, SignUpdata } from '../interface';
+import { LoginData, SignUpdata } from '../interface';
 
 @Injectable({
   providedIn: 'root',
@@ -27,18 +27,30 @@ export class LoginServiceService {
     });
   }
 
-  private loginApi = 'http://localhost:8080/signup';     //https://662b34bede35f91de15782fc.mockapi.io/signup
+  private api = 'http://localhost:8080';
 
   // getSignUpData() {
   //   return this.http.get<SignUpApidata[]>(this.loginApi);
   // }
+
+  postLoginData(value: LoginData) {
+    const body = {
+      emailId: value.email,
+      password: value.password,
+    };
+    return this.http.post(`${this.api}/login`, body);
+  }
 
   postSignUpData(value: SignUpdata) {
     const body = {
       name: value.name,
       emailId: value.email,
       password: value.password,
-    }
-    return this.http.post(this.loginApi, body);
+    };
+    return this.http.post(`${this.api}/signup`, body);
+  }
+
+  getAllUserData(){
+    return this.http.get(`${this.api}/getAllUsers`)
   }
 }

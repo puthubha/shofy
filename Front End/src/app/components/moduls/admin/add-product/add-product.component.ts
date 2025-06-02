@@ -1,4 +1,3 @@
-
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -29,17 +28,21 @@ export class AddProductComponent implements OnInit {
   ) {
     this.AddProductForm = new FormGroup({
       productName: new FormControl('', Validators.required),
-      productPrice: new FormControl('', Validators.required),
-      productDiscountPrice: new FormControl('', Validators.required),
-      productCategorie: new FormControl('', Validators.required),
+      price: new FormControl('', Validators.required),
+      discountPrice: new FormControl('', Validators.required),
+      categoryId: new FormControl('', Validators.required),
       productImage: new FormControl('', Validators.required),
     });
   }
 
   ngOnInit(): void {
-    this.AddProductCategorie.getProductCategorie().subscribe((data) => {
-      this.categorieApiData = data;
-    });
+    this.AddProductCategorie.getProductCategorie().subscribe(
+      (responce: any) => {
+        if (responce && responce.status) {
+          this.categorieApiData = responce.data;
+        }
+      }
+    );
   }
 
   fileChangeEvent(fileInput: any) {
@@ -62,10 +65,29 @@ export class AddProductComponent implements OnInit {
 
   addProduct() {
     this.AddProductForm.value.productImage = this.cardImageBase64;
-    this.ProductService.postProductData(this.AddProductForm.value).subscribe();
-    this.SweetAlert.success('Product Added successfully');
-    this.Router.navigate(['/filtered-products'], {
-      queryParams: { categorie: this.AddProductForm.value.productCategorie },
+    const formValue = this.AddProductForm.value;
+
+    const parsedValue = {
+      ...formValue,
+      discountPrice: Number(formValue.discountPrice),
+      categoryId: Number(formValue.categoryId),
+      price: Number(formValue.price),
+    };
+
+    this.ProductService.addProductData(parsedValue).subscribe({
+      next: (responce: any) => {
+        if (responce && responce.status) {
+          this.SweetAlert.success(responce.message);
+          this.Router.navigate(['/filtered-products'], {
+            queryParams: {
+              categorie: responce.data.category.categoryId,
+            },
+          });
+        }
+      },
+      error: (err) => {
+        console.log(err);
+      },
     });
   }
 }

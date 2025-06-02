@@ -26,9 +26,19 @@ export class ContactComponent implements OnInit {
   onSubmit() {
     if (this.contactUsForm.valid) {
       this.contactUsService
-        .postContactData(this.contactUsForm.value)
-        .subscribe();
-      this.SweetAlert.success('Massage Sended successfully');
+        .postFaqQuestionData(this.contactUsForm.value)
+        .subscribe({
+          next: (responce: any) => {
+            if (responce && responce.status) {
+              this.SweetAlert.success(responce.message);
+            }
+          },
+          error: (err) => {
+            if (err) {
+              this.SweetAlert.success(err.error.message);
+            }
+          },
+        });
     } else {
       this.SweetAlert.error('please fill up details');
     }

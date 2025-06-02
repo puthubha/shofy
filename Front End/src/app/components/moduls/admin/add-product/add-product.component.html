@@ -1,78 +1,93 @@
 <div class="profile__tab-content">
-    <div class="tab-content" id="profile-tabContent">
-        <div class="profile__info">
-            <h3 class="profile__info-title">Add Product</h3>
-            <div class="profile__info-content">
-           
-                <!-- form start -->
-                 <form [formGroup]="AddProductForm">
-
-                    <div class="row">
-                        <div class="col-xxl-6 col-md-6">
-                            <div class="profile__input-box">
-                                <div class="profile__input">
-                                    <input type="text" placeholder="Enter your Product Name" value="" formControlName="productName"/>
-                                    
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-xxl-6 col-md-6">
-                            <div class="profile__input-box">
-                                <div class="profile__input">
-                                    <input type="number" placeholder="Enter your Product Price" value="" formControlName="productPrice" />
-                                    
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xxl-6 col-md-6">
-                            <div class="profile__input-box">
-                                <div class="profile__input">
-                                    <input type="text" placeholder="Enter Discount Price Of product" value="" formControlName="productDiscountPrice"/>
-                                   
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xxl-6 col-md-6">
-                            <div class="profile__input-box">
-                                <div class="profile__input">
-                                    <input type="file" placeholder="uplode your Product Image" (change)="fileChangeEvent($event)" value="" formControlName="productImage"/>
-                                    
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xxl-6 col-md-6">
-                            <div class="row" style="margin-bottom: 20px">
-                                <div class="col-md-6">
-                                  <div class="form-group">
-                                    <label for="roleDropdown">Choose Product Categorie:</label>
-                                    <select
-                                      class="form-control"
-                                      id="roleDropdown"
-                                      formControlName="productCategorie"
-                                    >
-                                      <option *ngFor="let item of categorieApiData" [value]="item.productCategorieName">{{item.productCategorieName}}</option>
-                                      <!-- <option value="necklaces">Necklaces</option>
-                                      <option value="earrings">Earrings</option>
-                                      <option value="jewellerySet">Jewellery Set</option>
-                                      <option value="rings">Rings</option>
-                                      <option value="hairAccessorie">Hair Accessorie</option> -->
-                                    </select>
-                                  </div>
-                                </div>
-                              </div>
-                        </div>
-
-                        <div class="col-xxl-12">
-                            <div class="profile__btn">
-                                <button type="submit" class="tp-btn" (click)="addProduct()">Add Product</button>
-                            </div>
-                        </div>
-                    </div>
-
-                </form>
-            
+  <div class="tab-content" id="profile-tabContent">
+    <div class="profile__info">
+      <h3 class="profile__info-title">Add Product</h3>
+      <div class="profile__info-content">
+        <!-- form start -->
+        <form [formGroup]="AddProductForm">
+          <div class="row">
+            <div class="col-xxl-6 col-md-6">
+              <div class="profile__input-box">
+                <div class="profile__input">
+                  <input
+                    type="text"
+                    placeholder="Enter your Product Name"
+                    value=""
+                    formControlName="productName"
+                  />
+                </div>
+              </div>
             </div>
-        </div>
+
+            <div class="col-xxl-6 col-md-6">
+              <div class="profile__input-box">
+                <div class="profile__input">
+                  <input
+                    type="number"
+                    placeholder="Enter your Product Price"
+                    value=""
+                    formControlName="price"
+                  />
+                </div>
+              </div>
+            </div>
+            <div class="col-xxl-6 col-md-6">
+              <div class="profile__input-box">
+                <div class="profile__input">
+                  <input
+                    type="text"
+                    placeholder="Enter Discount Price Of product"
+                    value=""
+                    formControlName="discountPrice"
+                  />
+                </div>
+              </div>
+            </div>
+            <div class="col-xxl-6 col-md-6">
+              <div class="profile__input-box">
+                <div class="profile__input">
+                  <input
+                    type="file"
+                    placeholder="uplode your Product Image"
+                    (change)="fileChangeEvent($event)"
+                    value=""
+                    formControlName="productImage"
+                  />
+                </div>
+              </div>
+            </div>
+            <div class="col-xxl-6 col-md-6">
+              <div class="row" style="margin-bottom: 20px">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="roleDropdown">Choose Product Categorie:</label>
+                    <select
+                      class="form-control"
+                      id="roleDropdown"
+                      formControlName="categoryId"
+                    >
+                      <option
+                        *ngFor="let item of categorieApiData"
+                        [value]="item.categoryId"
+                      >
+                        {{ item.categoryName }}
+                      </option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-xxl-12">
+              <div class="profile__btn">
+                <button type="submit" class="tp-btn" (click)="addProduct()">
+                  Add Product
+                </button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
     </div>
+  </div>
 </div>

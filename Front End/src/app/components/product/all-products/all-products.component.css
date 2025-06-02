@@ -1,0 +1,11 @@
+.product-img {
+    width: 280px;              /* or whatever fixed width you prefer */
+    height: 300px;
+    object-fit: cover;         /* Use 'cover' for cropping, 'contain' to fit fully */
+    border-radius: 8px;        /* Optional: for rounded corners */
+    display: block;
+  }
+  
+  .tp-product-thumb-2{
+    padding-left: 8px;
+  }

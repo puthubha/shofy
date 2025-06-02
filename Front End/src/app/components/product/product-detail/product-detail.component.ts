@@ -23,22 +23,22 @@ export class ProductDetailComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.ProductService.getProductData().subscribe((a) => {
-      this.productApiData = a ;
+    // this.ProductService.getProductData().subscribe((a) => {
+    //   this.productApiData = a ;
 
-      this.ActivatedRoute.params.subscribe((params) => {
-        this.paramId = params['id'];
-      });
-
-      const Data = this.productApiData.find((data) => data._id === this.paramId);
-
-      if (Data) {
-        this.productData = [Data];
-      } else {
-        this.productData = [];
-      }
-
+    this.ActivatedRoute.params.subscribe((params) => {
+      this.paramId = params['id'];
     });
+
+    const Data = this.productApiData.find((data) => data.id === this.paramId);
+
+    if (Data) {
+      this.productData = [Data];
+    } else {
+      this.productData = [];
+    }
+
+    // });
 
     const data = localStorage.getItem('ShofyloginData');
     if (data) {

@@ -4,10 +4,12 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.backend.backend.dto.LoginRequest;
 import com.backend.backend.entity.SignUpUserData;
 import com.backend.backend.services.SignUpService;
 
@@ -26,6 +28,16 @@ public class SignUpController {
         userData.setRole("user");
         
         return signUpService.saveUserData(userData);
+    }
+
+    @PostMapping("/login")
+    public Map<String,Object> loginData(@RequestBody LoginRequest loginData) {
+        return signUpService.getLoginData(loginData);
+    }
+
+    @GetMapping("/getAllUsers")
+    public Map<String,Object> allUsersData(){
+        return signUpService.getAllUsersData();
     }
 
 }

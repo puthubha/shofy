@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ProductServiceService } from '../../services/product-service.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProductData } from '../../interface';
+import { SweetAlertService } from '../../services/sweet-alert.service';
 
 @Component({
   selector: 'app-filtered-products',
@@ -17,26 +18,33 @@ export class FilteredProductsComponent implements OnInit {
 
   constructor(
     private ProductService: ProductServiceService,
-    private Router: Router,
-    private ActivatedRoute: ActivatedRoute
+    private ActivatedRoute: ActivatedRoute,
+    private SweetAlert: SweetAlertService
   ) {}
 
   ngOnInit(): void {
-    this.ProductService.getProductData().subscribe((data) => {
-      this.productApiData = data;
+    this.ActivatedRoute.queryParams.subscribe((queryParams) => {
+      const propertyName = 'categorie';
+      this.categorie = queryParams[propertyName];
 
-      this.ActivatedRoute.queryParams.subscribe((queryParams) => {
-        const propertyName = 'categorie';
-        this.categorie = queryParams[propertyName];
-
-        const data = this.productApiData.filter(
-          (a) => a.productCategorie === this.categorie
-        );
-
-        this.filteredData = data;
-
-      });
+      if (this.categorie) {
+        this.ProductService.getProductData(
+          false,
+          Number(this.categorie)
+        ).subscribe({
+          next: (responce: any) => {
+            if (responce) {
+              this.productApiData = responce.data;
+              this.SweetAlert.success(responce.message);
+            }
+          },
+          error: (err: any) => {
+            if (err.error) {
+              this.SweetAlert.error(err.error.message);
+            }
+          },
+        });
+      }
     });
-
   }
 }

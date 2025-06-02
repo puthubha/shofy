@@ -15,8 +15,10 @@ export class ProductCategoriesComponent implements OnInit {
   constructor(private AddProductCategorie: AddProductCategorieService) {}
 
   ngOnInit(): void {
-    this.AddProductCategorie.getProductCategorie().subscribe((data) => {
-      this.categorieApiData = data;
+    this.AddProductCategorie.getProductCategorie().subscribe((responce:any) => {
+      if(responce && responce.status){
+        this.categorieApiData = responce.data;
+      }
     });
   }
 }
