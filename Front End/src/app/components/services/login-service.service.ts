@@ -1,11 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { LoginData, SignUpdata } from '../interface';
+import { Subject} from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class LoginServiceService {
+  IsUserLogedIn = new Subject<boolean>();
+
   constructor(private http: HttpClient) {}
 
   passwordEye() {
@@ -53,4 +56,9 @@ export class LoginServiceService {
   getAllUserData(){
     return this.http.get(`${this.api}/getAllUsers`)
   }
+
+ userLogedIn(value:boolean){
+  this.IsUserLogedIn.next(value);
+ }
+
 }

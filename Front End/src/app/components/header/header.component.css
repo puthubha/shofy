@@ -16,3 +16,15 @@
 #header-sticky{
     z-index: -1;
 }
+
+.setting-Menus {
+   cursor: pointer;
+}
+
+.setting-Menus:hover {
+    color: #bd844c;
+}
+
+.remove-after::after {
+    content: none !important;
+  }

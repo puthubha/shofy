@@ -28,10 +28,6 @@ export class SignInComponent implements OnInit {
 
   ngOnInit(): void {
     this.LoginServiceService.passwordEye();
-
-    // this.LoginServiceService.getSignUpData().subscribe((data) => {
-    //   this.apiGetData = data;
-    // });
   }
 
   onSubmit() {
@@ -49,8 +45,7 @@ export class SignInComponent implements OnInit {
               } else {
                 this.Router.navigateByUrl('/admin-panel');
               }
-
-              // this.Router.navigateByUrl('/signin');
+              this.LoginServiceService.userLogedIn(true);
             }else{
               this.SweetAlert.error(result.message);      
             }

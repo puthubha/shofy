@@ -63,7 +63,7 @@
             <li class="has-dropdown">
               <a href="blog.html">Blog</a>
             </li>
-            <li><a href="contact.html">Contact</a></li>
+            <li><a routerLink="/contact">Contact</a></li>
           </ul>
         </nav>
       </div>
@@ -81,7 +81,7 @@
         </div>
       </div>
       <div class="offcanvas__btn">
-        <a href="contact.html" class="tp-btn-2 tp-btn-border-2">Contact Us</a>
+        <a routerLink="/contact" class="tp-btn-2 tp-btn-border-2">Contact Us</a>
       </div>
     </div>
   </div>
@@ -146,7 +146,10 @@
               <div
                 class="tp-header-top-menu d-flex align-items-center justify-content-end"
               >
-                <div class="tp-header-top-menu-item tp-header-setting">
+                <div
+                  *ngIf="localStorageData?.name"
+                  class="tp-header-top-menu-item tp-header-setting"
+                >
                   <span
                     class="tp-header-setting-toggle"
                     id="tp-header-setting-toggle"
@@ -155,18 +158,30 @@
                   >
                   <ul id="settingMenu">
                     <li>
-                      <a href="profile.html">My Profile</a>
+                      <a class="setting-Menus" (click)="onMyProfile()"
+                        >My Profile</a
+                      >
                     </li>
                     <li>
-                      <a href="wishlist.html">Wishlist</a>
+                      <a class="setting-Menus">Wishlist</a>
                     </li>
                     <li>
-                      <a href="cart.html">Cart</a>
+                      <a class="setting-Menus">Cart</a>
                     </li>
                     <li>
-                      <a href="login.html">Logout</a>
+                      <a class="setting-Menus" (click)="onLogOut()">Logout</a>
                     </li>
                   </ul>
+                </div>
+                <div
+                  *ngIf="!localStorageData?.name"
+                  class="tp-header-top-menu-item"
+                >
+                  <span
+                    routerLink="/signin"
+                    class="tp-header-setting-toggle remove-after"
+                    >LogIn</span
+                  >
                 </div>
               </div>
             </div>
@@ -216,7 +231,7 @@
                     <li>
                       <a href="blog.html">Blog</a>
                     </li>
-                    <li><a href="contact.html">Contact</a></li>
+                    <li><a routerLink="/contact">Contact</a></li>
                   </ul>
                 </nav>
               </div>

@@ -3,6 +3,7 @@ import { NavigationEnd, Router } from '@angular/router';
 import { SignUpApidata } from '../interface';
 import { SweetAlertService } from '../services/sweet-alert.service';
 import { filter } from 'rxjs';
+import { LoginServiceService } from '../services/login-service.service';
 
 @Component({
   selector: 'app-header',
@@ -14,7 +15,12 @@ export class HeaderComponent implements OnInit {
   isAddClassOnThisRoute: boolean = false;
   isAddStickyClass: boolean = false;
   isAddTpStyleClass: boolean = false;
-  constructor(private router: Router, private SweetAlert: SweetAlertService) {}
+
+  constructor(
+    private router: Router,
+    private SweetAlert: SweetAlertService,
+    private loginService: LoginServiceService
+  ) {}
 
   @HostListener('window:scroll', [])
   onWindowScroll() {
@@ -41,11 +47,35 @@ export class HeaderComponent implements OnInit {
     }
   }
 
+  @HostListener('document:click', ['$event'])
+  onDocumentClick(event: MouseEvent) {
+    const targetedElement = event.target as HTMLElement;
+    if (
+      targetedElement.id !== 'tp-header-setting-toggle' &&
+      targetedElement.id !== 'settingMenu'
+    ) {
+      const ulEle = document.getElementById('settingMenu');
+      if (ulEle && ulEle.classList.contains('tp-setting-list-open')) {
+        ulEle.classList.remove('tp-setting-list-open');
+      }
+    }
+  }
+
   ngOnInit(): void {
     this.router.events
       .pipe(filter((event) => event instanceof NavigationEnd))
       .subscribe((event: NavigationEnd) => {
-        if (event.urlAfterRedirects === '/product-categoties' || event.urlAfterRedirects === '/all-products') {
+        if (
+          event.urlAfterRedirects === '/product-categoties' ||
+          event.urlAfterRedirects === '/all-products' ||
+          event.urlAfterRedirects === '/contact' ||
+          event.urlAfterRedirects === '/signin' ||
+          event.urlAfterRedirects.includes('/add-product') ||
+          event.urlAfterRedirects.includes('/profile') ||
+          event.urlAfterRedirects.includes('/view-faq') ||
+          event.urlAfterRedirects.includes('/user-list') ||
+          event.urlAfterRedirects.includes('/add-product-categorie')
+        ) {
           this.isAddClassOnThisRoute = true;
           document
             .getElementById('header-sticky')
@@ -58,6 +88,12 @@ export class HeaderComponent implements OnInit {
           this.isAddClassOnThisRoute = false;
         }
       });
+    this.getDataFromLocalStorage();
+    this.loginService.IsUserLogedIn.subscribe((res) => {
+      if (res) {
+        this.getDataFromLocalStorage();
+      }
+    });
   }
 
   open() {
@@ -66,6 +102,13 @@ export class HeaderComponent implements OnInit {
 
   close() {
     document.querySelector('#open').classList.remove('offcanvas-opened');
+  }
+
+  getDataFromLocalStorage() {
+    const data = localStorage.getItem('ShofyloginData');
+    if (data) {
+      this.localStorageData = JSON.parse(data);
+    }
   }
 
   toggelButton(id: string) {
@@ -91,11 +134,6 @@ export class HeaderComponent implements OnInit {
   }
 
   onMyProfile() {
-    const data = localStorage.getItem('ShofyloginData');
-    if (data) {
-      this.localStorageData = JSON.parse(data);
-    }
-
     if (this.localStorageData && this.localStorageData.role) {
       if (this.localStorageData.role === 'admin') {
         this.router.navigateByUrl('/admin-panel');
@@ -110,5 +148,6 @@ export class HeaderComponent implements OnInit {
 
   onLogOut() {
     this.SweetAlert.logOut();
+    this.localStorageData = <SignUpApidata>{};
   }
 }

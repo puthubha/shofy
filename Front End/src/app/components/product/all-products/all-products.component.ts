@@ -24,7 +24,7 @@ export class AllProductsComponent implements OnInit {
       next: (responce: any) => {
         if (responce) {
           this.productApiData = responce.data;
-          this.SweetAlert.success(responce.message);
+          // this.SweetAlert.success(responce.message);
         }
       },
       error: (err: any) => {

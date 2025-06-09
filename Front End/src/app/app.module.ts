@@ -17,7 +17,7 @@ import { ContactComponent } from './components/contact/contact.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from  '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from  '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { AddProductComponent } from './components/moduls/admin/add-product/add-product.component';
 import { ViewFaqComponent } from './components/moduls/admin/view-faq/view-faq.component';
@@ -26,6 +26,8 @@ import { UserSidebarComponent } from './components/moduls/user/user-sidebar/user
 import { UserProfileComponent } from './components/moduls/user/user-profile/user-profile.component';
 import { AddProductCategorieComponent } from './components/moduls/admin/add-product-categorie/add-product-categorie.component';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { LoderComponent } from './components/loder/loder.component';
+import { LoaderInterceptor } from './components/services/loader.interceptor';
 @NgModule({
   declarations: [
     AppComponent,
@@ -46,7 +48,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
     UserListComponent,
     UserSidebarComponent,
     UserProfileComponent,
-    AddProductCategorieComponent
+    AddProductCategorieComponent,
+    LoderComponent
   ],
   imports: [
     BrowserModule,
@@ -57,7 +60,13 @@ import { NgxPaginationModule } from 'ngx-pagination';
     CommonModule,
     NgxPaginationModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: LoaderInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
